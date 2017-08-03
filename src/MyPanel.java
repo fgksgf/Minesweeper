@@ -58,7 +58,6 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
         label1.setBackground(Color.BLACK);
         label1.setEnabled(false);
         label1.setBorderPainted(false);
-//        label1.setForeground(Color.RED);
         this.add(label1);
 
         face.setBackground(Color.BLACK);
@@ -77,7 +76,6 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
         label2.setFont(font);
         label2.setBackground(Color.BLACK);
         label2.setEnabled(false);
-//        label1.setForeground(Color.RED);
         label2.setBorderPainted(false);
         this.add(label2);
     }
