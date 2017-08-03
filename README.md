@@ -7,13 +7,16 @@
 
 ## 二、效果截图
 + 游戏界面
-![Markdown](http://i2.bvimg.com/603298/c2aa54d12b03d884.png)
+
+![](http://i2.bvimg.com/603298/c2aa54d12b03d884.png)
 
 + 游戏胜利
-![Markdown](http://i2.bvimg.com/603298/94b46593239ac385.png)
+
+![](http://i2.bvimg.com/603298/94b46593239ac385.png)
 
 + 游戏失败
-![Markdown](http://i2.bvimg.com/603298/635ecf13262e8d12.png)
+
+![](http://i2.bvimg.com/603298/635ecf13262e8d12.png)
 
 ## 三、实现原理
 **详细实现过程欢迎参看 [我的博客](http://fgksgf.me/) :)**
