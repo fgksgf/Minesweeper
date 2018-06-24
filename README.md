@@ -6,6 +6,10 @@
 基于Java Swing
 
 
+## 下载
+[jar文件下载](https://github.com/fgksgf/Minesweeper/releases)
+
+
 ## 截图
 
 ### 游戏界面
