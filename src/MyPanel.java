@@ -5,37 +5,37 @@ import java.awt.event.MouseListener;
 
 public class MyPanel extends JPanel implements MouseListener, Runnable {
     // 扫雷面板的行数和列数
-    int row = 10;
-    int col = 10;
+    private int row;
+    private int col;
 
     // 地雷总数
-    int sum = 10;
+    private int sum = 10;
     // 剩余地雷数
-    int remain = 10;
+    private int remain = 10;
 
-    long startTime;
-    long endTime = 0;
+    private long startTime;
+    private long endTime = 0;
 
-    static Icon[] icon = new ImageIcon[3];
+    private static Icon[] icon = new ImageIcon[3];
 
-    JButton label1 = new JButton("剩余地雷: " + remain);
-    JButton label2 = new JButton("时间: " + endTime);
-    JButton face = new JButton(icon[0]);
+    private JButton label1 = new JButton(Minesweeper.def.getString("remain") + remain);
+    private JButton label2 = new JButton(Minesweeper.def.getString("time") + endTime);
+    private JButton face = new JButton(icon[0]);
 
-    Font font = new Font("黑体", Font.BOLD, 25);
+    private Font font = new Font("黑体", Font.BOLD, 25);
 
     // 方格的边长
-    final int d = 51;
-    final int h = 70;
+    private final int d = 51;
+    private final int h = 70;
 
-    Block blocks[][];
+    private Block blocks[][];
 
     // 游戏是否结束
-    boolean over = false;
+    private boolean over = false;
     // 游戏是否开始
-    boolean begin = false;
+    private boolean begin = false;
     // 玩家是否胜利
-    boolean win = false;
+    private boolean win = false;
 
     static {
         for (int i = 0; i < icon.length; i++) {
@@ -43,7 +43,7 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
         }
     }
 
-    public MyPanel(int row, int col) {
+    MyPanel(int row, int col) {
         this.row = row;
         this.col = col;
         setBackground(Color.BLACK);
@@ -53,7 +53,7 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
     }
 
     // 初始化按钮
-    public void initButtons() {
+    private void initButtons() {
         label1.setFont(font);
         label1.setBackground(Color.BLACK);
         label1.setEnabled(false);
@@ -81,7 +81,7 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
     }
 
     // 开始新游戏
-    public void restart() {
+    private void restart() {
         face.setIcon(icon[0]);
         remain = sum;
         startTime = 0;
@@ -95,7 +95,7 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
     }
 
     // 初始化方块，随机产生地雷
-    public void initBlocks() {
+    private void initBlocks() {
         // 已有地雷数
         int count = 0;
 
@@ -167,7 +167,7 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
         }
     }
 
-    public void startGame() {
+    void startGame() {
         new Thread(this).start();
     }
 
@@ -175,7 +175,7 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
      * 翻开相邻的方块
      * 如果方块为空（category为0），则递归地翻开与空相邻的方块
      */
-    public void flipAround(int i, int j) {
+    private void flipAround(int i, int j) {
         // 左上
         if (i - 1 >= 0 && j - 1 >= 0 && !blocks[i - 1][j - 1].flip && blocks[i - 1][j - 1].flag == 0) {
             blocks[i - 1][j - 1].flip = true;
@@ -238,7 +238,7 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
      * 当双击方块周围已标记雷数等于该位置数字时，相当于对该方块周围未打开的方块均进行一次左键单击操作
      * 地雷未标记完全时使用双击无效。若数字周围有标错的地雷，则游戏结束
      */
-    public void doubleClickFlip(int i, int j) {
+    private void doubleClickFlip(int i, int j) {
         int number = 0;
         boolean wrong = false;
         // 左上
@@ -321,7 +321,7 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
     }
 
     // 翻开所有方块
-    public void flipAll() {
+    private void flipAll() {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 blocks[i][j].flip = true;
@@ -334,11 +334,11 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
     public void paint(Graphics g) {
         super.paint(g);
 
-        label1.setText("剩余地雷: " + remain);
+        label1.setText(Minesweeper.def.getString("remain") + remain);
         if (begin) {
             endTime = (System.currentTimeMillis() - startTime) / 1000;
         }
-        label2.setText("时间: " + endTime);
+        label2.setText(Minesweeper.def.getString("time") + endTime);
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -393,10 +393,6 @@ public class MyPanel extends JPanel implements MouseListener, Runnable {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // 左右键同时按下时
-        if (e.getModifiersEx() == (MouseEvent.BUTTON3_DOWN_MASK + MouseEvent.BUTTON1_DOWN_MASK)) {
-
-        }
     }
 
     @Override

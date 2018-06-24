@@ -3,10 +3,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Block {
+class Block {
     // 方块坐标
-    int x = 0;
-    int y = 0;
+    private int x;
+    private int y;
 
     // 方块是否被翻开
     boolean flip = false;
@@ -19,9 +19,9 @@ public class Block {
     // 方块类型：0-8数字，9表示是地雷
     int category = 0;
 
-    static Image nums[] = new Image[9];
-    static Image bombs[] = new Image[2];
-    static Image flags[] = new Image[3];
+    private static Image nums[] = new Image[9];
+    private static Image bombs[] = new Image[2];
+    private static Image flags[] = new Image[3];
 
     static {
         try {
@@ -44,25 +44,25 @@ public class Block {
         }
     }
 
-    public Block(int x, int y) {
+    Block(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
     // 右键未翻开的方块时，更新标记
-    public void updateFlag() {
+    void updateFlag() {
         flag++;
         flag = flag % 3;
     }
 
     // 画方块
-    public void drawBlock(Graphics g) {
+    void drawBlock(Graphics g) {
         if (flip) {
             if (over) {
                 if (category == 9 && flag == 1) {
                     // 如果地雷被扫到
                     g.drawImage(bombs[1], x, y, null);
-                } else if (category == 9 && flag != 1) {
+                } else if (category == 9) {
                     g.drawImage(bombs[0], x, y, null);
                 }
             } else {
