@@ -21,6 +21,14 @@
 ![](./images/screenshots/lost.png)
 
 
+## 运行方式
+
+**注意：请确保 jar文件 与 images文件夹 在同一目录下！**
+``` bash
+$ java -jar Minesweeper.jar
+```
+
+
 ## 更新日志
 
 ### V 2.0 (2018-06-24)
